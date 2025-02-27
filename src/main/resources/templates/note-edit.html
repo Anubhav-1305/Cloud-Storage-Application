@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Note</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body class="p-3 mb-2 bg-light text-black">
+<div class="container">
+    <h1>Edit Note</h1>
+    <form th:action="@{/note/edit}" method="post">
+        <input type="hidden" name="noteId" th:value="${note.noteId}" />
+        <div class="form-group">
+            <label for="noteTitle">Title:</label>
+            <input type="text" class="form-control" name="noteTitle" th:value="${note.noteTitle}" />
+        </div>
+        <div class="form-group">
+            <label for="noteDescription">Description:</label>
+            <textarea class="form-control" name="noteDescription" th:text="${note.noteDescription}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+</body>
+</html>

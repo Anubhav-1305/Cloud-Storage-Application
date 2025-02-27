@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View File</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body class="p-3 mb-2 bg-light text-black">
+<div class="container">
+    <h1>File Details</h1>
+
+    <p><strong>File Name:</strong> <span th:text="${file.fileName}"></span></p>
+    <p><strong>Content Type:</strong> <span th:text="${file.contentType}"></span></p>
+    <p><strong>File Size:</strong> <span th:text="${file.fileSize}"></span> bytes</p>
+
+    <div th:if="${file.contentType != null and file.contentType.startsWith('image/')}" >
+        <img th:src="@{'/files/download/' + ${file.fileId}}" alt="Image" class="img-fluid">
+    </div>
+
+    <div th:if="${file.contentType == null or !file.contentType.startsWith('image/')}" >
+        <a th:href="@{'/files/download/' + ${file.fileId}}" download="${file.fileName}" class="btn btn-primary">Download File</a>
+    </div>
+
+    <a th:href="@{/home}" class="btn btn-secondary mt-3">Back to Home</a>
+</div>
+</body>
+</html>
